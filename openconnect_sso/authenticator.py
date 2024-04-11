@@ -126,7 +126,12 @@ def _create_auth_init_request(host, url, version):
         DeviceId("linux-64"),
         GroupSelect(host.name),
         GroupAccess(url),
-        Capabilities(AuthMethod("single-sign-on-v2")),
+        Capabilities(
+            AuthMethod("multiple-cert"),
+            AuthMethod("single-sign-on"),
+            AuthMethod("single-sign-on-v2"),
+            AuthMethod("single-sign-on-external-browser"),
+        ),
     )
     return etree.tostring(
         root, pretty_print=True, xml_declaration=True, encoding="UTF-8"
